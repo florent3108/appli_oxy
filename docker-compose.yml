@@ -8,7 +8,7 @@ services:
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-oxy_password}
       POSTGRES_DB: appli_oxy_db
     ports:
-      - '5433:5432'
+      - '127.0.0.1:5437:5432'
     volumes:
       - oxy_pgdata:/var/lib/postgresql/data
     networks:
@@ -21,7 +21,7 @@ services:
     container_name: appli-oxy-app
     restart: always
     ports:
-      - '3001:3000'
+      - '3002:3000'
     environment:
       - NODE_ENV=production
       - DATABASE_URL=postgresql://oxy_user:${POSTGRES_PASSWORD:-oxy_password}@db:5432/appli_oxy_db
