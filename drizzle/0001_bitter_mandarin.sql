@@ -1,0 +1,1 @@
+ALTER TABLE "PHP_maintenance_record" ALTER COLUMN "semaine" SET DATA TYPE varchar(10) USING semaine::varchar;

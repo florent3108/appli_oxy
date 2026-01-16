@@ -1,0 +1,38 @@
+services:
+  db:
+    image: postgres:18-alpine
+    container_name: appli-oxy-db
+    restart: always
+    environment:
+      POSTGRES_USER: oxy_user
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-oxy_password}
+      POSTGRES_DB: appli_oxy_db
+    ports:
+      - '5433:5432'
+    volumes:
+      - oxy_pgdata:/var/lib/postgresql/data
+    networks:
+      - appli-oxy-network
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: appli-oxy-app
+    restart: always
+    ports:
+      - '3001:3000'
+    environment:
+      - NODE_ENV=production
+      - DATABASE_URL=postgresql://oxy_user:${POSTGRES_PASSWORD:-oxy_password}@db:5432/appli_oxy_db
+    depends_on:
+      - db
+    networks:
+      - appli-oxy-network
+
+volumes:
+  oxy_pgdata:
+
+networks:
+  appli-oxy-network:
+    driver: bridge

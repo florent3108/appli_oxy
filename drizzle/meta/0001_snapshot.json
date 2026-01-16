@@ -1,0 +1,155 @@
+{
+  "id": "fbdd4aa3-28e4-4d5d-81bc-6c51af5bdd33",
+  "prevId": "1f9e38cd-e252-4821-90fd-5806ea40de40",
+  "version": "7",
+  "dialect": "postgresql",
+  "tables": {
+    "public.PHP_maintenance_record": {
+      "name": "PHP_maintenance_record",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "flotte": {
+          "name": "flotte",
+          "type": "varchar(256)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "engin": {
+          "name": "engin",
+          "type": "varchar(256)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "site": {
+          "name": "site",
+          "type": "varchar(256)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "semaine": {
+          "name": "semaine",
+          "type": "varchar(10)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "entree": {
+          "name": "entree",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "sortie": {
+          "name": "sortie",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "code_operation": {
+          "name": "code_operation",
+          "type": "varchar(256)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "libelle": {
+          "name": "libelle",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "num_di": {
+          "name": "num_di",
+          "type": "varchar(256)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "butee": {
+          "name": "butee",
+          "type": "varchar(256)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "validation_rdv": {
+          "name": "validation_rdv",
+          "type": "varchar(50)",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'En attente'"
+        },
+        "commentaires": {
+          "name": "commentaires",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "CURRENT_TIMESTAMP"
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamp with time zone",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {
+        "flotte_idx": {
+          "name": "flotte_idx",
+          "columns": [
+            {
+              "expression": "flotte",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        },
+        "engin_idx": {
+          "name": "engin_idx",
+          "columns": [
+            {
+              "expression": "engin",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "concurrently": false,
+          "method": "btree",
+          "with": {}
+        }
+      },
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    }
+  },
+  "enums": {},
+  "schemas": {},
+  "sequences": {},
+  "roles": {},
+  "policies": {},
+  "views": {},
+  "_meta": {
+    "columns": {},
+    "schemas": {},
+    "tables": {}
+  }
+}
