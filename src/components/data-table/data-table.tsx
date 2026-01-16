@@ -503,23 +503,26 @@ export function MaintenanceTable<TData extends { id: number; validationRdv?: str
                             const isNextRowEmpty = nextRow && isEmptyRecord ? isEmptyRecord(nextRow) : false;
 
                             // Check if current row should be grouped with previous row (both must be non-empty)
+                            const curr = currentRow as Record<string, unknown>;
+                            const prev = prevRow as Record<string, unknown> | null;
+                            const next = nextRow as Record<string, unknown> | null;
                             const isSameGroupAsPrev = !!(
-                                !isCurrentRowEmpty && !isPrevRowEmpty && prevRow &&
-                                currentRow.engin === prevRow.engin &&
-                                currentRow.site === prevRow.site &&
-                                (currentRow.semaine === prevRow.semaine ||
-                                 (currentRow.entree && prevRow.entree &&
-                                  new Date(currentRow.entree).getTime() === new Date(prevRow.entree).getTime()))
+                                !isCurrentRowEmpty && !isPrevRowEmpty && prev &&
+                                curr.engin === prev.engin &&
+                                curr.site === prev.site &&
+                                (curr.semaine === prev.semaine ||
+                                 (curr.entree && prev.entree &&
+                                  new Date(curr.entree as string).getTime() === new Date(prev.entree as string).getTime()))
                             );
 
                             // Check if current row should be grouped with next row (both must be non-empty)
                             const isSameGroupAsNext = !!(
-                                !isCurrentRowEmpty && !isNextRowEmpty && nextRow &&
-                                currentRow.engin === nextRow.engin &&
-                                currentRow.site === nextRow.site &&
-                                (currentRow.semaine === nextRow.semaine ||
-                                 (currentRow.entree && nextRow.entree &&
-                                  new Date(currentRow.entree).getTime() === new Date(nextRow.entree).getTime()))
+                                !isCurrentRowEmpty && !isNextRowEmpty && next &&
+                                curr.engin === next.engin &&
+                                curr.site === next.site &&
+                                (curr.semaine === next.semaine ||
+                                 (curr.entree && next.entree &&
+                                  new Date(curr.entree as string).getTime() === new Date(next.entree as string).getTime()))
                             );
 
                             const isGroupStart = !isSameGroupAsPrev && isSameGroupAsNext;

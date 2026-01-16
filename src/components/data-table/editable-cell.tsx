@@ -71,7 +71,7 @@ export function EditableCell<TData, TValue>({ cell }: EditableCellProps<TData, T
 
         try {
             const [, day, month, year] = dateMatch;
-            const buteeDate = new Date(parseInt(year), parseInt(month) - 1, parseInt(day));
+            const buteeDate = new Date(parseInt(year!), parseInt(month!) - 1, parseInt(day!));
             const today = new Date();
             today.setHours(0, 0, 0, 0); // Reset time to midnight for comparison
 
